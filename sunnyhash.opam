@@ -1,0 +1,24 @@
+opam-version: "2.0"
+name: "sunnyhash"
+synopsis: "SunnyHash: Strongly Universal Hashing"
+maintainer: "TG x Thoth <*@tg-x.net>"
+authors: ["TG x Thoth <*@tg-x.net>"]
+tags: [ "strongly" "universal" "hashing" "hash" ]
+license: "MPL-2.0"
+homepage: "https://github.com/p2pcollab/ocaml-sunnyhash"
+doc: "https://p2pcollab.github.io/doc/ocaml-sunnyhash/sunnyhash/"
+dev-repo: "git+https://github.com/p2pcollab/ocaml-sunnyhash.git"
+bug-reports: "https://github.com/p2pcollab/ocaml-sunnyhash/issues"
+depends:
+[
+  "dune" {build & >= "1.0.0"}
+  "stdint"
+  "ounit" {with-test}
+]
+build: [
+  ["dune" "subst"] {pinned}
+  ["dune" "build" "-p" name "-j" jobs]
+]
+run-test: [
+  ["dune" "runtest" "-p" name "-j" jobs]
+]
