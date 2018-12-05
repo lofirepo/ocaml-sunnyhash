@@ -1,0 +1,14 @@
+language: c
+sudo: required
+install: wget https://raw.githubusercontent.com/ocaml/ocaml-ci-scripts/master/.travis-opam.sh
+script: bash -ex .travis-opam.sh
+env:
+  - OCAML_VERSION=4.07 PACKAGE=sunnyhash
+  - OCAML_VERSION=4.06 PACKAGE=sunnyhash
+  - OCAML_VERSION=4.05 PACKAGE=sunnyhash
+  - OCAML_VERSION=4.04 PACKAGE=sunnyhash
+  - OCAML_VERSION=4.03 PACKAGE=sunnyhash
+  - OCAML_VERSION=4.02 PACKAGE=sunnyhash
+os:
+  - linux
+  - osx
