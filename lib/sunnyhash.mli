@@ -19,20 +19,11 @@ val init :
       which needs to be initialized before calling this function.
  *)
 
-val hash32 :
+val hash :
   t ->
   string ->
-  Uint32.t
-(** [hash31 t str]
-
-    Compute 32-bit hash value of string.
- *)
-
-val hash31 :
-  t ->
-  string ->
-  Int32.t
-(** [hash31 t str]
+  int
+(** [hash t str]
 
     Compute 31-bit hash value of string.
  *)

@@ -42,23 +42,24 @@ let get_or_pad x n =
 (** Compute a 32-bit word value
     from 4 bytes of string [x] starting from index [n] *)
 let word32 s n =
-  let w = Uint32.of_int @@ get_or_pad s n in
-  let w = Uint32.logor w @@
-            Uint32.shift_left
-              (Uint32.of_int @@ get_or_pad s (n+1))
-              8 in
+  let w = Uint32.of_int @@ get_or_pad s (n+3) in
   let w = Uint32.logor w @@
             Uint32.shift_left
               (Uint32.of_int @@ get_or_pad s (n+2))
+              8 in
+
+  let w = Uint32.logor w @@
+            Uint32.shift_left
+              (Uint32.of_int @@ get_or_pad s (n+1))
               16 in
   let w = Uint32.logor w @@
             Uint32.shift_left
-              (Uint32.of_int @@ get_or_pad s (n+3))
+              (Uint32.of_int @@ get_or_pad s n)
               24 in
   w
 
 (** Multilinear-HM algorithm *)
-let rec ml32r ?(n=(-1)) t x len sum =
+let rec ml31r ?(n=(-1)) t x len sum =
   let a =
     if n = -1 (* prepend length *)
     then Uint64.of_int len
@@ -70,20 +71,16 @@ let rec ml32r ?(n=(-1)) t x len sum =
   let sum = Uint64.add sum @@ Uint64.mul ak bk in
   let n = n + 2 in
   if 4 * n < len
-  then ml32r t x len sum ~n
+  then ml31r t x len sum ~n
   else Uint64.shift_right sum 31
 
-(** Multilinear hashing producing a 32-bit hash value **)
-let ml32 t s =
+(** Multilinear hashing producing a 31-bit hash value **)
+let ml31 t s =
   let len = String.length s in
   if t.maxlen < len
   then raise @@ Invalid_argument "string is longer than maxlen";
-  ml32r t s len t.key.(Array.length t.key - 1)
-
-(** Compute 32-bit hash value of string [x] *)
-let hash32 t x =
-  Uint64.to_uint32 @@ ml32 t x
+  ml31r t s len t.key.(Array.length t.key - 1)
 
 (** Compute 31-bit hash value of string [x] *)
-let hash31 t x =
-  Uint64.to_int32 @@ ml32 t x
+let hash t x =
+  Uint64.to_int @@ ml31 t x
