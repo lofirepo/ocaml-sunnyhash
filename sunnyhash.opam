@@ -6,7 +6,7 @@ authors: ["TG x Thoth <*@tg-x.net>"]
 tags: [ "strongly" "universal" "hashing" "hash" ]
 license: "MPL-2.0"
 homepage: "https://github.com/p2pcollab/ocaml-sunnyhash"
-doc: "https://p2pcollab.github.io/doc/ocaml-sunnyhash/sunnyhash/"
+doc: "https://p2pcollab.github.io/doc/sunnyhash/"
 dev-repo: "git+https://github.com/p2pcollab/ocaml-sunnyhash.git"
 bug-reports: "https://github.com/p2pcollab/ocaml-sunnyhash/issues"
 depends:
