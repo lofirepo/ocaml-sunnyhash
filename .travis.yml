@@ -8,7 +8,6 @@ env:
   - OCAML_VERSION=4.05 PACKAGE=sunnyhash
   - OCAML_VERSION=4.04 PACKAGE=sunnyhash
   - OCAML_VERSION=4.03 PACKAGE=sunnyhash
-  - OCAML_VERSION=4.02 PACKAGE=sunnyhash
 os:
   - linux
   - osx
