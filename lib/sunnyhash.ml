@@ -2,20 +2,25 @@
 
 open Stdint
 
+module Rng = Nocrypto.Rng
+
 type t = {
     maxlen: int;
     key: Uint64.t array;
   }
 
 (** Generate random [key] array of [len] length *)
-let rec gen_key ?(n=0) key len =
-  if n < len
-  then
-    let m = Uint64.of_int64 @@ Random.int64 Int64.max_int in
-    Array.set key n m;
-    gen_key ~n:(n+1) key len
-  else
-    key
+let gen_key key len =
+  let rec gen n =
+    if n < len
+    then
+      let m = Uint64.of_int64 @@ Rng.Int64.gen Int64.max_int in
+      Array.set key n m;
+      gen (n + 1)
+    else
+      key
+  in
+  gen 0
 
 (** Initialize hash function with random values *)
 let init ?key maxlen =

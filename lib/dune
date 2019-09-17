@@ -2,5 +2,5 @@
  (name sunnyhash)
  (public_name sunnyhash)
  (modules sunnyhash)
- (libraries stdint)
+ (libraries stdint nocrypto)
 )

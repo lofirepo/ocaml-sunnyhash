@@ -12,8 +12,10 @@ bug-reports: "https://github.com/p2pcollab/ocaml-sunnyhash/issues"
 depends:
 [
   "dune" {build & >= "1.0.0"}
-  "stdint"
   "ounit" {with-test}
+  "nocrypto.unix" {with-test}
+  "nocrypto"
+  "stdint"
 ]
 build: [
   ["dune" "subst"] {pinned}

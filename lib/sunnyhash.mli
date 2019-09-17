@@ -15,7 +15,7 @@ val init :
     - [maxlen]: maximum length of input data
                 that can be hashed with this function
     - [key]: [maxlen/4 + 2] random bytes required for hashing;
-      if not provided, it is generated using the [Random] module,
+      if not provided, it is generated using the [Nocrypto.Rng] module,
       which needs to be initialized before calling this function.
  *)
 

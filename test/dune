@@ -2,7 +2,8 @@
  (name test_sunnyhash)
  (package sunnyhash)
  (libraries
-  sunnyhash
   oUnit
+  sunnyhash
+  nocrypto.unix
  )
 )

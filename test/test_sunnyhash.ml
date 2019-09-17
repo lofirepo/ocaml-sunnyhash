@@ -86,5 +86,5 @@ let suite =
     ]
 
 let () =
-  Random.self_init ();
+  Nocrypto_entropy_unix.initialize ();
   run_test_tt_main suite
